@@ -1,0 +1,59 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Network Template",
+    "Resources": {
+      "VPC": {
+        "Type": "AWS::EC2::VPC",
+        "Properties": {
+          "CidrBlock": "<%= cidr_block %>",
+          "Tags": [
+            { "Key": "Name", "Value": "<%= vpc_type %>"},
+            { "Key": "vpc", "Value": "<%= vpc_type %>" },
+            { "Key": "stack", "Value": { "Ref": "AWS::StackName" } }
+          ]
+        }
+      },
+<%= subnet_resources %>
+      "InternetGateway": {
+        "Type": "AWS::EC2::InternetGateway",
+        "Properties": {
+          "Tags": [ { "Key": "Name", "Value": { "Ref": "AWS::StackName"} }]
+        }
+      },
+      "AttachGateway": {
+        "Type": "AWS::EC2::VPCGatewayAttachment",
+        "Properties": {
+          "VpcId": { "Ref": "VPC" },
+          "InternetGatewayId": { "Ref": "InternetGateway" }
+        }
+      },
+      "PublicRouteTable": {
+        "Type": "AWS::EC2::RouteTable",
+        "Properties": {
+          "VpcId": { "Ref": "VPC" }
+        }
+      },
+      "PublicRoute": {
+        "Type": "AWS::EC2::Route",
+        "DependsOn": "AttachGateway",
+        "Properties": {
+          "RouteTableId": { "Ref": "PublicRouteTable" },
+          "DestinationCidrBlock": "0.0.0.0/0",
+          "GatewayId": { "Ref": "InternetGateway" }
+        }
+      },
+      "PublicSubnetRouteTableAssociation": {
+        "Type": "AWS::EC2::SubnetRouteTableAssociation",
+        "Properties": {
+          "SubnetId": { "Ref": "PublicSubnet" },
+          "RouteTableId": { "Ref": "PublicRouteTable" }
+        }
+      }
+    },
+    "Outputs": {
+      "vpc_id": {
+        "Value": { "Ref": "VPC" }
+      },
+<%= subnets_template_outputs %>
+    }
+}

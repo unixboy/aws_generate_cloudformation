@@ -1,0 +1,8 @@
+      "<%= set_subnet_name(name) %>": {
+        "Type": "AWS::EC2::Subnet",
+        "Properties": {
+          "VpcId": { "Ref": "VPC" },
+          "CidrBlock": "<%= set_subnet_cidr(subnet_config) %>",
+          "Tags": [ { "Key": "Name", "Value": "<%= set_subnet_name(name) %>" }]
+        }
+      },

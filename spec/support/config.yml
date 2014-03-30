@@ -1,0 +1,37 @@
+global:
+  allowed_networks: [
+    "127.0.0.1/32", # localhost
+    "192.168.1.1"
+  ]
+  instance_ami: ami-1234asdf
+  keyname: me@you
+  nat_ami: ami-9875lkjh
+  s3_config_bucket: my-bucket
+vpcs:
+  bastion:
+    cidr_block: '10.0.0.0/24'
+    subnets:
+      public:
+        acl: public
+        instances:
+        - bastion
+        network: '10.0.0.0/24'
+acls:
+  public:
+    ingress:
+      "0.0.0.0/0":
+      - start: 1024
+        end: 65535
+      "10.0.0.0/8":
+      - start: 22
+        end: 22
+      "192.168.1.1":
+      - start: all
+        end: all
+    egress:
+      "0.0.0.0/0":
+      - start: all
+        end: all
+instance_types:
+- role: bastion
+  count: 2
