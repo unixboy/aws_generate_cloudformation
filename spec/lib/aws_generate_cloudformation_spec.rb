@@ -2,7 +2,7 @@ require_relative '../spec_helper.rb'
 
 describe AwsGenerateCloudformation do
   describe '#generate' do
-    config_yml = AwsGenerateCloudformation::Test::TEST_YML_FILE
+    config_yml = AwsGenerateCloudformation::Spec::Support::TEST_YML_FILE
     let(:stdout) { double('stdout').as_null_object }
     let(:cloudformation) { AwsGenerateCloudformation.new(stdout, config_yml) }
 

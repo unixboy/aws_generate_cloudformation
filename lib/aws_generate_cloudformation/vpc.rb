@@ -1,6 +1,5 @@
 require 'erb'
 require 'aws_generate_cloudformation/subnets'
-require 'aws_generate_cloudformation/validate'
 
 class AwsGenerateCloudformation
   # creates a full VPC cloudformation template
@@ -43,10 +42,6 @@ class AwsGenerateCloudformation
     end
 
     def subnets_template_outputs
-    end
-
-    def validate(template)
-      puts "VALIDATION: #{Validate.new(template).validate}"
     end
   end
 end

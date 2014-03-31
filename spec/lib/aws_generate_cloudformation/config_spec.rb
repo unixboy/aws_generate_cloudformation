@@ -7,7 +7,7 @@ describe AwsGenerateCloudformation::Config do
     end
 
     it "loads config file from custom location" do
-      test_yml_file = AwsGenerateCloudformation::Test::TEST_YML_FILE
+      test_yml_file = AwsGenerateCloudformation::Spec::Support::TEST_YML_FILE
       expect {
         AwsGenerateCloudformation::Config.new(test_yml_file)
       }.to_not raise_error
