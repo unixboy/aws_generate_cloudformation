@@ -1,4 +1,12 @@
 require 'bundler/setup'
+require 'simplecov'
+SimpleCov.start do
+  add_filter 'spec/'
+  add_filter 'vendor/'
+  add_filter 'erb/'
+  add_filter 'tmp/'
+  add_filter 'Rakefile'
+end
 
 Bundler.setup
 require 'aws_generate_cloudformation'

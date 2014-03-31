@@ -9,3 +9,7 @@ guard :rspec do
   notification :growl
 end
 
+
+guard 'rake', :task => ':tailor' do
+  watch(%r{^lib/(.+)\.rb$})
+end
