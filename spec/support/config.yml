@@ -16,6 +16,14 @@ vpcs:
         instances:
         - bastion
         network: '10.0.0.0/24'
+  app:
+    cidr_size: '/22'
+    subnets: # test
+      private:
+        acl: private
+        instances:
+        - app
+        size: '/24'
 acls:
   public:
     ingress:

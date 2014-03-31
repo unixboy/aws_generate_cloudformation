@@ -16,5 +16,4 @@ test/version_tmp
 tmp
 vendor/bundle
 .rspec
-.cane
 *.swp
