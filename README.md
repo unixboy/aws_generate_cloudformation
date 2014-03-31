@@ -1,5 +1,7 @@
 # AwsGenerateCloudformation
 
+[![Build Status](https://travis-ci.org/bhouse/aws_generate_cloudformation.svg?branch=master)](https://travis-ci.org/bhouse/aws_generate_cloudformation)
+
 ## Testing
 requires [bundler](https://bundler.io) and [growl](https://itunes.apple.com/us/app/id467939042?mt=12) + [growlnotify](http://growl.cachefly.net/GrowlNotify-2.1.zip)
 
